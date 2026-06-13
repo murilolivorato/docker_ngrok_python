@@ -312,8 +312,10 @@ This tutorial is open source and available for everyone to use and modify.
 ---
 
 <div align="center">
-  <p><strong>Built with ❤️ for developers learning ngrok, Docker & webhooks</strong></p>
-  <p>
-    <a href="#-exposing-a-dockerized-python-app-to-the-internet-with-ngrok">Back to top ↑</a>
-  </p>
+  <h3>⭐ Star This Repository ⭐</h3>
+  <p>Your support helps us improve and maintain this project!</p>
+  <a href="https://github.com/murilolivorato/docker_ngrok_python/stargazers">
+    <img src="https://img.shields.io/github/stars/murilolivorato/docker_ngrok_python?style=social" alt="GitHub Stars">
+  </a>
 </div>
+
