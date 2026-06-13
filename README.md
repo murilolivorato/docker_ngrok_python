@@ -1,8 +1,46 @@
-# Exposing a Dockerized Python App to the Internet with ngrok
+# 🐍 + 🐳 + 🔗 Exposing a Dockerized Python App to the Internet with ngrok
 
-A step-by-step tutorial showing how to run a **Python (Flask)** application
-inside **Docker** and make it reachable from the public internet using
-**ngrok** — all orchestrated with Docker Compose.
+<div align="center">
+  <img src="https://miro.medium.com/v2/resize:fit:700/1*aDKCn-FezqOzuHzjPE7ZbA.png" alt="ngrok tunnel architecture" width="600">
+  
+  **Part of the [Medium series](https://medium.com/@murilolivorato/getting-started-with-ngrok-tunnel-your-docker-app-to-public-internet-fef6f7f8cd47)** on webhook development
+  
+  A step-by-step tutorial showing how to run a **Python (Flask)** application inside **Docker** and make it reachable from the public internet using **ngrok** — all orchestrated with Docker Compose.
+</div>
+
+---
+
+## 🚀 Quick Start
+
+```bash
+# 1. Get your ngrok token from https://dashboard.ngrok.com
+# 2. Set it in .env
+cp .env.example .env
+# Edit and paste your NGROK_AUTHTOKEN
+
+# 3. Start the app + tunnel
+docker compose up -d ngrok --build
+
+# 4. Get your public URL
+curl -s http://localhost:4040/api/tunnels | grep -Po '"public_url":"\K[^"]+' | head -1
+
+# 5. Point GitHub webhook at: https://<your-ngrok-url>/webhook
+# 6. Push a commit and watch it land in logs/webhooks.log
+tail -f logs/webhooks.log
+```
+
+---
+
+## 📚 Table of Contents
+
+- [Why ngrok?](#why-ngrok)
+- [How it works](#how-the-pieces-fit-together)
+- [Project structure](#project-layout)
+- [Setup steps](#step-1--get-an-ngrok-authtoken)
+- [Configure GitHub webhooks](#testing-with-a-real-github-webhook)
+- [Webhook logging](#step-6--webhook-logging)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#-contributing)
 
 ---
 
@@ -252,3 +290,30 @@ docker compose down
 - An interstitial warning page appears for browser visits (skippable for API
   calls via the `ngrok-skip-browser-warning` header).
 - More than enough for webhook testing and demos.
+
+---
+
+## 🤝 Contributing
+
+Found a bug or have a suggestion? We'd love your help!
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/your-feature`)
+3. **Commit** your changes with clear messages
+4. **Push** to your branch
+5. **Open** a Pull Request
+
+---
+
+## 📝 License
+
+This tutorial is open source and available for everyone to use and modify.
+
+---
+
+<div align="center">
+  <p><strong>Built with ❤️ for developers learning ngrok, Docker & webhooks</strong></p>
+  <p>
+    <a href="#-exposing-a-dockerized-python-app-to-the-internet-with-ngrok">Back to top ↑</a>
+  </p>
+</div>
