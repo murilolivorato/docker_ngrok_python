@@ -1,0 +1,24 @@
+# Ngrok configuration file (v3 agent, config schema "2")
+# Mounted into the ngrok container at /etc/ngrok.yml
+#
+# NOTE: the authtoken is NOT set here. The ngrok agent does not expand
+# ${VAR} placeholders inside this YAML, so we leave it out and let the agent
+# read it from the NGROK_AUTHTOKEN environment variable (set in docker-compose
+# from your .env). This keeps the secret out of the config file.
+version: "2"
+
+# Stream agent logs to the container stdout (visible via `docker compose logs`).
+log: stdout
+log_level: info
+
+# The inspection / web UI must listen on all interfaces so we can reach it
+# from the host at http://localhost:4040
+web_addr: "0.0.0.0:4040"
+
+tunnels:
+  # Public HTTPS tunnel pointing at the Flask service.
+  # 'web' is the docker-compose service name; 5000 is its internal port.
+  python-app:
+    proto: http
+    addr: web:5000
+    inspect: true

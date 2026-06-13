@@ -1,0 +1,10 @@
+# Never commit your real authtoken / secrets.
+.env
+
+# Webhook log files
+logs/
+
+# Python
+__pycache__/
+*.pyc
+.venv/

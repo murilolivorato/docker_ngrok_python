@@ -1,0 +1,48 @@
+# Python (Flask) + ngrok, fully containerized.
+#
+#   docker compose up -d web               # start the Python app only
+#   docker compose up -d ngrok             # start the app AND the ngrok tunnel
+
+services:
+  # ---------------------------------------------------------------------------
+  # The Python web application
+  # ---------------------------------------------------------------------------
+  web:
+    build: ./app
+    container_name: ngrok_tutorial_web
+    ports:
+      # Expose the app on the host too, so you can hit http://localhost:5000
+      # directly without going through ngrok.
+      - "5000:5000"
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      - PORT=5000
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - tutorial_net
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # The ngrok tunnel — start it on demand with `docker compose up -d ngrok`
+  # ---------------------------------------------------------------------------
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: ngrok_tutorial_agent
+    command: start --all --config /etc/ngrok.yml
+    environment:
+      # Pulled from the .env file in this directory.
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    volumes:
+      - ./ngrok.yml:/etc/ngrok.yml:ro
+    ports:
+      - "4040:4040"   # ngrok request-inspection web UI
+    depends_on:
+      - web
+    networks:
+      - tutorial_net
+    restart: unless-stopped
+
+networks:
+  tutorial_net:
+    driver: bridge
