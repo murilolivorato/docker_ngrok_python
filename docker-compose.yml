@@ -1,11 +1,28 @@
-# Python (Flask) + ngrok, fully containerized.
+# Python (Flask) + Vue.js + ngrok, fully containerized.
 #
-#   docker compose up -d web               # start the Python app only
-#   docker compose up -d ngrok             # start the app AND the ngrok tunnel
+#   docker compose up -d                   # start everything
+#   docker compose up -d web               # start the Python backend only
+#   docker compose up -d frontend          # start the Vue.js frontend only
+#   docker compose up -d ngrok             # start the entire stack AND the ngrok tunnel
 
 services:
   # ---------------------------------------------------------------------------
-  # The Python web application
+  # The Vue.js frontend (served by nginx)
+  # ---------------------------------------------------------------------------
+  frontend:
+    build: ./frontend
+    container_name: ngrok_tutorial_frontend
+    ports:
+      - "80:80"
+      - "3000:3000"
+    depends_on:
+      - web
+    networks:
+      - tutorial_net
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # The Python web application (Flask backend)
   # ---------------------------------------------------------------------------
   web:
     build: ./app
@@ -39,6 +56,7 @@ services:
       - "4040:4040"   # ngrok request-inspection web UI
     depends_on:
       - web
+      - frontend
     networks:
       - tutorial_net
     restart: unless-stopped

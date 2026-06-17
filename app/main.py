@@ -11,8 +11,10 @@ from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Write webhook events to a rotating log file inside /app/logs/
 _log_dir = Path("/app/logs")

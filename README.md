@@ -1,12 +1,16 @@
 # 🐍 + 🐳 + 🔗 Exposing a Dockerized Python App to the Internet with ngrok
 
-<div align="center">
+<p align="center">
   <img src="https://miro.medium.com/v2/resize:fit:700/1*aDKCn-FezqOzuHzjPE7ZbA.png" alt="ngrok tunnel architecture" width="600">
-  
-  **Part of the [Medium series](https://medium.com/@murilolivorato/getting-started-with-ngrok-tunnel-your-docker-app-to-public-internet-fef6f7f8cd47)** on webhook development
-  
-  A step-by-step tutorial showing how to run a **Python (Flask)** application inside **Docker** and make it reachable from the public internet using **ngrok** — all orchestrated with Docker Compose.
-</div>
+</p>
+
+---
+
+<p align="center">
+  <strong>Read the full article on Medium:</strong><br>
+  ✍️ <a href="https://medium.com/@murilolivorato/getting-started-with-ngrok-tunnel-your-docker-app-to-public-internet-fef6f7f8cd47">Getting Started with ngrok — Tunnel Your Docker App to the Public Internet</a><br><br>
+  A step-by-step tutorial showing how to run a <strong>Python (Flask)</strong> application inside <strong>Docker</strong> and make it reachable from the public internet using <strong>ngrok</strong> — all orchestrated with Docker Compose.
+</p>
 
 ---
 
@@ -311,11 +315,11 @@ This tutorial is open source and available for everyone to use and modify.
 
 ---
 
-<div align="center">
-  <h3>⭐ Star This Repository ⭐</h3>
-  <p>Your support helps us improve and maintain this project!</p>
+<p align="center">
+  <strong>⭐ Star This Repository ⭐</strong><br>
+  Your support helps us improve and maintain this project!<br><br>
   <a href="https://github.com/murilolivorato/docker_ngrok_python/stargazers">
     <img src="https://img.shields.io/github/stars/murilolivorato/docker_ngrok_python?style=social" alt="GitHub Stars">
   </a>
-</div>
+</p>
 

@@ -16,9 +16,16 @@ log_level: info
 web_addr: "0.0.0.0:4040"
 
 tunnels:
-  # Public HTTPS tunnel pointing at the Flask service.
+  # Public HTTPS tunnel pointing at the Vue.js frontend.
+  # 'frontend' is the docker-compose service name; 80 is its internal port.
+  frontend-app:
+    proto: http
+    addr: frontend:80
+    inspect: true
+
+  # Public HTTPS tunnel pointing at the Flask backend API.
   # 'web' is the docker-compose service name; 5000 is its internal port.
-  python-app:
+  python-api:
     proto: http
     addr: web:5000
     inspect: true

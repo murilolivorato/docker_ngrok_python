@@ -1,0 +1,28 @@
+# Docker Compose Override for Local Development
+# This file is automatically loaded alongside docker-compose.yml
+#
+# Usage:
+#   docker compose up -d                    # Uses both files (production build)
+#   docker compose -f docker-compose.yml up -d  # Uses only docker-compose.yml (ignore override)
+
+# For development, you might want to run the frontend locally:
+#
+#   cd frontend && npm run dev
+#   cd app && python main.py
+#
+# And just run the other services from Docker.
+#
+# Uncomment the settings below if you want to modify behavior for local development.
+
+# Uncomment below to add volume mounts for live code reloading:
+#
+# services:
+#   web:
+#     volumes:
+#       - ./app:/app
+#       - ./logs:/app/logs
+#
+#   frontend:
+#     volumes:
+#       - ./frontend/src:/app/src
+#       - ./frontend/public:/app/public
